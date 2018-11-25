@@ -1,22 +1,29 @@
-package com.example.avinash.plantquiz
+package com.example.avinash.plantquiz.Controller
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Color
+import android.net.ConnectivityManager
 import android.os.AsyncTask
 import android.os.Bundle
 import android.provider.MediaStore
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
+import com.example.avinash.plantquiz.Model.DownloadingObject
+import com.example.avinash.plantquiz.Model.ParsePlantUtility
+import com.example.avinash.plantquiz.Model.Plant
+import com.example.avinash.plantquiz.R
 
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.ArrayList
+import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -61,9 +68,13 @@ class MainActivity : AppCompatActivity() {
         photoGalleryButton?.setOnClickListener(View.OnClickListener {
             Toast.makeText(this@MainActivity, "Gallery Button is Clicked", Toast.LENGTH_SHORT).show()
 
-            val galleryIntent = Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             startActivityForResult(galleryIntent, OPEN_GALLERY_BUTTON_REQUEST_ID)
         })
+
+        val innerClassObject = DownloadinPlantTask()
+        innerClassObject.execute()
+
 
     }
 
@@ -123,6 +134,13 @@ class MainActivity : AppCompatActivity() {
 
         override fun doInBackground(vararg params: String?): List<Plant>? {
 
+            val downloadingObject : DownloadingObject =
+                DownloadingObject()
+            var jsonData = downloadingObject.downloadJSONDataFromLink(link = "http://plantplaces.com/perl/mobile/flashcard.pl")
+            Log.i("JSON",jsonData)
+           // Toast.makeText(this@MainActivity, jsonData, Toast.LENGTH_SHORT).show()
+
+
             return null
         }
 
@@ -130,6 +148,20 @@ class MainActivity : AppCompatActivity() {
             super.onPostExecute(result)
 
         }
+
+    }
+
+
+    fun imageViewIsClicked(view: View) {
+
+        val randomNumber : Int = (Math.random() * 6).toInt() + 1
+        //Log.i(tag: "TAG", message : "The random no is" : ra)
+        btnOpenCamera.setBackgroundColor(Color.YELLOW)
+
+        if (randomNumber == 1) {
+
+        }
+
 
     }
 
