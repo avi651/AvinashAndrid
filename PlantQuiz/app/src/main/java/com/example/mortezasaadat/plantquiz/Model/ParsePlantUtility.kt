@@ -1,20 +1,27 @@
-package com.example.avinash.plantquiz.Model
+package com.example.mortezasaadat.plantquiz.Model
 
-import android.widget.Toast
 import org.json.JSONArray
 import org.json.JSONObject
 
+/**
+ * Created by mortezasaadat on 2/7/18.
+ */
 class ParsePlantUtility {
 
+
+
+
     fun parsePlantObjectsFromJSONData() : List<Plant>? {
+
+
+
 
         var allPlantObjects: ArrayList<Plant> = ArrayList()
         var downloadingObject = DownloadingObject()
         var topLevelPLantJSONData = downloadingObject.
-            downloadJSONDataFromLink("http://plantplaces.com/perl/mobile/flashcard.pl")
+                downloadJSONDataFromLink("http://plantplaces.com/perl/mobile/flashcard.pl")
         var topLevelJSONObject: JSONObject = JSONObject(topLevelPLantJSONData)
         var plantObjectsArray: JSONArray = topLevelJSONObject.getJSONArray("values")
-
 
         var index: Int = 0
 

@@ -1,4 +1,4 @@
-package com.example.avinash.plantquiz.Model
+package com.example.mortezasaadat.plantquiz.Model
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -9,7 +9,9 @@ import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
 
-
+/**
+ * Created by mortezasaadat on 2/5/18.
+ */
 class DownloadingObject {
 
 
@@ -21,9 +23,9 @@ class DownloadingObject {
         val urlConnection = url.openConnection() as HttpURLConnection
         try {
             val bufferedInputString: BufferedInputStream =
-                BufferedInputStream(urlConnection.inputStream)
+                    BufferedInputStream(urlConnection.inputStream)
             val bufferedReader: BufferedReader =
-                BufferedReader(InputStreamReader(bufferedInputString))
+                    BufferedReader(InputStreamReader(bufferedInputString))
             // temporary string to hold each line read from the BufferedReader.
             var inputLineString: String?
             inputLineString = bufferedReader.readLine()

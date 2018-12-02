@@ -1,4 +1,4 @@
-package com.example.avinash.plantquiz
+package com.example.mortezasaadat.plantquiz
 
 import org.junit.Test
 
